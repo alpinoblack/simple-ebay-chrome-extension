@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Ebay Helper Owl",
   "version": "1.0",
-  "description": "When displaying results in EBay add the summation of both delivery and item",
+  "description": "Mini Helper Tool for Shopping at Ebay",
   "icons": {
     "16": "images/icons8-o-cute-16.png",
     "32": "images/icons8-o-cute-32.png",
