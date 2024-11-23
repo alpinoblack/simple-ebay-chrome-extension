@@ -1,28 +1,4 @@
-function extractPrices() {
-
-  function flattenUntilTextNode(element) {
-    const result = [];
-
-    function flatten(node) {
-      if (node.nodeType === Node.TEXT_NODE) {
-        // If it's a text node, add it to the result
-        result.push(node);
-      } else if (node.nodeType === Node.ELEMENT_NODE) {
-        // If it's an element node, recurse through its children
-        Array.from(node.childNodes).forEach(flatten);
-      }
-      // Ignore comment nodes and other node types
-    }
-
-    flatten(element);
-    return result;
-  }
-
-  function extractFirstCurrency(text) {
-    const pattern = /(?:EUR|\$|ILS)?/;
-    const match = text.match(pattern);
-    return match ? match[0] : null;
-  }
+function addTotalPriceForAllItems() {
 
   function getCurrency(priceSpan) {
     const childNodes = priceSpan.childNodes;
@@ -56,33 +32,35 @@ function extractPrices() {
 
   }
 
-  // Select all div elements with class 's-item__details-section--primary'
-  const primaryDivs = document.querySelectorAll('div.s-item__details-section--primary');
+  //get all items <div>s
+  const itemDivs = document.querySelectorAll('div.s-item__details-section--primary');
+  itemDivs.forEach(itemDiv => {
 
-  const unorderedListNode = document.querySelector('ul.srp-results,srp-list clearfix');
-  const pageScrollSizeButton = document.querySelector('div.srp-ipp');
+    function createNewCombinedPriceSpan(itemPrice, delieveryPrice, currency) {
+      const combinedPrice = document.createElement('span');
+      combinedPrice.style.fontWeight = 'bold';
+      combinedPrice.textContent = `Price including delivery ${currency ? currency : ''} ${(itemPrice + delieveryPrice).toFixed(2)}`;
+      itemDiv.appendChild(combinedPrice);
+    }
 
-  unorderedListNode.prepend(pageScrollSizeButton);
-
-  primaryDivs.forEach(div => {
-    // Find the span with class 's-item__price' within each div
-    const itemPriceSpan = div.querySelector('span.s-item__price');
-    const deliveryPriceSpan = div.querySelector('span.s-item__shipping,s-item__logisticsCost');
+    const itemPriceSpan = itemDiv.querySelector('span.s-item__price');
+    const deliveryPriceSpan = itemDiv.querySelector('span.s-item__shipping,s-item__logisticsCost');
 
     if (itemPriceSpan) {
       const itemPrice = extractPricesFromSpan(itemPriceSpan);
-      let delieveryPrice;
+      let deliveryPrice;
       if (deliveryPriceSpan) {
-        delieveryPrice = extractPricesFromSpan(deliveryPriceSpan)
+        deliveryPrice = extractPricesFromSpan(deliveryPriceSpan)
       }
 
       const currency = getCurrency(itemPriceSpan);
 
-      if (itemPrice !== undefined && delieveryPrice !== undefined) {
-        const combinedPrice = document.createElement('span');
-        combinedPrice.style.fontWeight = 'bold';
-        combinedPrice.textContent = `Price including delivery ${currency ? currency : ''} ${(itemPrice + delieveryPrice).toFixed(2)}`;
-        div.appendChild(combinedPrice);
+      if (itemPrice !== undefined && deliveryPrice !== undefined) {
+        // const combinedPrice = document.createElement('span');
+        // combinedPrice.style.fontWeight = 'bold';
+        // combinedPrice.textContent = `Price including delivery ${currency ? currency : ''} ${(itemPrice + delieveryPrice).toFixed(2)}`;
+        // itemDiv.appendChild(combinedPrice);
+        createNewCombinedPriceSpan(itemPrice, deliveryPrice, currency)
       }
     }
 
@@ -90,4 +68,39 @@ function extractPrices() {
 
 }
 
-extractPrices();
+function moveResultsPerPageToTopOfPage() {
+  const unorderedListNode = document.querySelector('ul.srp-results,srp-list clearfix');
+  const pageScrollSizeButton = document.querySelector('div.srp-ipp');
+  unorderedListNode.prepend(pageScrollSizeButton);
+}
+
+//main program
+moveResultsPerPageToTopOfPage();
+addTotalPriceForAllItems();
+
+
+//utility functions
+
+function flattenUntilTextNode(element) {
+  const result = [];
+
+  function flatten(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      // If it's a text node, add it to the result
+      result.push(node);
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      // If it's an element node, recurse through its children
+      Array.from(node.childNodes).forEach(flatten);
+    }
+    // Ignore comment nodes and other node types
+  }
+
+  flatten(element);
+  return result;
+}
+
+function extractFirstCurrency(text) {
+  const pattern = /(?:EUR|\$|ILS)?/; //todo add more currency options, wheather it\s symbols or initials
+  const match = text.match(pattern);
+  return match ? match[0] : null;
+}
