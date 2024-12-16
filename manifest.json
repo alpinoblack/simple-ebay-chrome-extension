@@ -15,6 +15,12 @@
       "matches": [
         "https://www.ebay.com/sch/*"
       ]
+    },
+    {
+      "js": ["scripts/image-rotate.js"],
+      "matches": [
+        "https://www.ebay.com/itm/*"
+      ]
     }
   ]
 }
