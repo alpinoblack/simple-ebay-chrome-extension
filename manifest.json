@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Ebay Helper Owl",
   "version": "1.0",
-  "description": "Mini Helper Tool for Shopping at Ebay",
+  "description": "Mini Helper Tool for Shopping at eBay",
   "icons": {
     "16": "images/icons8-o-cute-16.png",
     "32": "images/icons8-o-cute-32.png",
