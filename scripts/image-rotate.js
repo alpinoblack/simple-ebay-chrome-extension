@@ -1,9 +1,15 @@
 
-let wheelPressCounter = 0;
+const WHEEL_PRESS_COUNTER_ATTRIBUTE = 'wheelPressCounter';
 
 function pressingScrollButtonOnImage() {
     const currentActiveImage = document.querySelector('div.ux-image-carousel-item.image-treatment.active.image');
-    wheelPressCounter = (wheelPressCounter + 1) % 4;
+    let wheelPressCounter = currentActiveImage.getAttribute(WHEEL_PRESS_COUNTER_ATTRIBUTE);
+    if (wheelPressCounter) {
+        wheelPressCounter = (Number(wheelPressCounter) + 1) % 4;
+    } else {
+        wheelPressCounter = 1;
+    }
+    currentActiveImage.setAttribute(WHEEL_PRESS_COUNTER_ATTRIBUTE, wheelPressCounter);
     currentActiveImage.style.transform = `rotate(${90 * wheelPressCounter}deg)`;
 }
 
