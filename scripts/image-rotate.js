@@ -1,4 +1,4 @@
-
+console.log('image.js running');
 const WHEEL_PRESS_COUNTER_ATTRIBUTE = 'wheelPressCounter';
 
 function pressingScrollButtonOnImage() {

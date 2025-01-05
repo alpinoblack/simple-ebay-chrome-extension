@@ -9,18 +9,37 @@
     "48": "images/icons8-o-cute-48.png",
     "96": "images/icons8-o-cute-96.png"
   },
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
   "content_scripts": [
     {
-      "js": ["scripts/content.js"],
+      "js": [
+        "scripts/content.js"
+      ],
       "matches": [
         "https://www.ebay.com/sch/*"
       ]
     },
     {
-      "js": ["scripts/image-rotate.js"],
+      "js": [
+        "scripts/image-rotate.js"
+      ],
+      "matches": [
+        "https://www.ebay.com/itm/*"
+      ]
+    },
+    {
+      "js": [
+        "scripts/messages-to-background.js"
+      ],
       "matches": [
         "https://www.ebay.com/itm/*"
       ]
     }
+  ],
+  "permissions": [
+    "bookmarks",
+    "tabs"
   ]
 }
