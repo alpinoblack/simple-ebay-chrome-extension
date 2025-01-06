@@ -23,14 +23,7 @@
     },
     {
       "js": [
-        "scripts/image-rotate.js"
-      ],
-      "matches": [
-        "https://www.ebay.com/itm/*"
-      ]
-    },
-    {
-      "js": [
+        "scripts/image-rotate.js",
         "scripts/messages-to-background.js"
       ],
       "matches": [

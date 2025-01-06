@@ -10,4 +10,8 @@
 #### After
 ![image](after.png)
 
+3. Pressing the mouse **scroll** button the item image will be rotated 90 degress clockwise (when in the item screen).
+
+4. Pressing the **b** button will save the current page as bookmark under a folder called **EBay** and under a subfolder for that seller.
+
 #### [How to add local Chrome Extensions](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked)
