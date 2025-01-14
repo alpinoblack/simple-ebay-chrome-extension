@@ -10,12 +10,12 @@
     "96": "images/icons8-o-cute-96.png"
   },
   "background": {
-    "service_worker": "scripts/background.js"
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {
       "js": [
-        "scripts/content.js"
+        "content.js"
       ],
       "matches": [
         "https://www.ebay.com/sch/*"
@@ -23,8 +23,8 @@
     },
     {
       "js": [
-        "scripts/image-rotate.js",
-        "scripts/messages-to-background.js"
+        "image-rotate.js",
+        "messages-to-background.js"
       ],
       "matches": [
         "https://www.ebay.com/itm/*"
