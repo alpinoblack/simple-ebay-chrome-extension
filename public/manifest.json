@@ -15,7 +15,7 @@
   "content_scripts": [
     {
       "js": [
-        "content.js"
+        "items-screen.js"
       ],
       "matches": [
         "https://www.ebay.com/sch/*"
@@ -23,8 +23,7 @@
     },
     {
       "js": [
-        "image-rotate.js",
-        "messages-to-background.js"
+        "item-screen.js"
       ],
       "matches": [
         "https://www.ebay.com/itm/*"

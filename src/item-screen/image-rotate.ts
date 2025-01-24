@@ -12,11 +12,14 @@ function pressingScrollButtonOnImage() {
     currentActiveImage.setAttribute(WHEEL_PRESS_COUNTER_ATTRIBUTE, String(wheelPressCounter));
     //currentActiveImage.style.transform = `rotate(${90 * wheelPressCounter}deg)`;
 
+
     currentActiveImage.setAttribute("style", `transform: rotate(${90 * wheelPressCounter}deg)`)
 }
 
-window.addEventListener('mousedown', (event) => {
-    if (event.button === 1) {
-        pressingScrollButtonOnImage();
-    }
-});
+export function addItemBookmarkEvent() {
+    window.addEventListener('mousedown', (event) => {
+        if (event.button === 1) {
+            pressingScrollButtonOnImage();
+        }
+    });
+}
