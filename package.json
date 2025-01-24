@@ -1,0 +1,35 @@
+{
+  "name": "simple-ebay-chrome-extension",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prod-build": "webpack --mode production",
+    "dev-build": "webpack --watch",
+    "lint": "eslint . --ext .ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chrome": "^0.0.193",
+    "@types/jquery": "^3.5.14",
+    "@typescript-eslint/eslint-plugin": "^8.21.0",
+    "@typescript-eslint/parser": "^8.21.0",
+    "browser-sync": "^2.27.10",
+    "browser-sync-webpack-plugin": "^2.3.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "eslint": "^8.56.0",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.7.4",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^4.9.3"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.183",
+    "dotenv": "^16.0.1",
+    "dotenv-webpack": "^8.0.1",
+    "jquery": "^3.6.0",
+    "lodash": "^4.17.21"
+  }
+}
